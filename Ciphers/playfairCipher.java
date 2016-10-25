@@ -20,6 +20,7 @@ public class playfairCipher
     static String key;
     static String path;
     static String output = "";
+	private static Scanner scan;
     
     /**
      * Main method used for reading text and input
@@ -27,8 +28,7 @@ public class playfairCipher
      */
     public static void main(String[] args)
     {
-        //Sets up scanner for user input
-        Scanner scan = new Scanner(System.in);
+        scan = new Scanner(System.in);
         System.out.println("(E)ncrypt or (D)ecrypt?");
         input = scan.nextLine();
         System.out.println("Please enter your key");
