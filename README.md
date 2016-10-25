@@ -1,2 +1,2 @@
-# Converters
-Converters for binary, hexadecimal, and decimal
+# Projects
+Folder that contains subfolders of projects
