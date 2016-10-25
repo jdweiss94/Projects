@@ -5,7 +5,6 @@ import java.util.Scanner;
  * Justin Weiss
  * Chris Heeneke
  */
-//Test
 public class playfairCipher
 {
     //Sets global variables
