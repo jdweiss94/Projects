@@ -4,7 +4,11 @@ import java.util.Random;
  * Converts binary numbers to decimal
  */
 public class binaryToDecimal {
-    /**
+    private static Scanner scan;
+	private static Scanner scanE;
+	private static Scanner scanM;
+	private static Scanner scanH;
+	/**
      * Main method
      * @param args not used
      */
@@ -16,8 +20,7 @@ public class binaryToDecimal {
      */
     public static void binaryToDecimal()
     {
-      //Creates scanner
-      Scanner scan = new Scanner(System.in);
+      scan = new Scanner(System.in);
       System.out.println("(E)asy, (M)edium, or (H)ard");
       String difficulty = scan.next();
       if(difficulty.equalsIgnoreCase("E"))
@@ -44,12 +47,11 @@ public class binaryToDecimal {
     {
         //Creates number randomizer
         Random rand = new Random();
-        //Creates scanner
-        Scanner scan = new Scanner(System.in);
+        scanE = new Scanner(System.in);
         int num = rand.nextInt(7) + 1;
         //Takes user answer
         System.out.println("What is " + Integer.toBinaryString(num) + " equal to?");
-        int answer = scan.nextInt();
+        int answer = scanE.nextInt();
         //Checks if answer is correct
         if(answer == num)
         {
@@ -61,7 +63,7 @@ public class binaryToDecimal {
         }
         //Sees if user wants to go again
         System.out.println("Go again? (Y)es or (N)o.");
-        String choice = scan.next();
+        String choice = scanE.next();
         if(choice.equalsIgnoreCase("Y"))
         {
             binaryToDecimal();
@@ -82,12 +84,11 @@ public class binaryToDecimal {
     {
         //Creates number randomizer
         Random rand = new Random();
-        //Creates scanner
-        Scanner scan = new Scanner(System.in);
+        scanM = new Scanner(System.in);
         int num = rand.nextInt(31) + 7;
         //Takes user answer
         System.out.println("What is " + Integer.toBinaryString(num) + " equal to?");
-        int answer = scan.nextInt();
+        int answer = scanM.nextInt();
         //Checks if answer is correct
         if(answer == num)
         {
@@ -99,7 +100,7 @@ public class binaryToDecimal {
         }
         //Sees if user wants to go again
         System.out.println("Go again? (Y)es or (N)o.");
-        String choice = scan.next();
+        String choice = scanM.next();
         if(choice.equalsIgnoreCase("Y"))
         {
             binaryToDecimal();
@@ -120,12 +121,11 @@ public class binaryToDecimal {
     {
         //Creates number randomizer
         Random rand = new Random();
-        //Creates scanner
-        Scanner scan = new Scanner(System.in);
+        scanH = new Scanner(System.in);
         int num = rand.nextInt(1023) + 31;
         //Takes user answer
         System.out.println("What is " + Integer.toBinaryString(num) + " equal to?");
-        int answer = scan.nextInt();
+        int answer = scanH.nextInt();
         //Checks if answer is correct
         if(answer == num)
         {
@@ -137,7 +137,7 @@ public class binaryToDecimal {
         }
         //Sees if user wants to go again
         System.out.println("Go again? (Y)es or (N)o.");
-        String choice = scan.next();
+        String choice = scanH.next();
         if(choice.equalsIgnoreCase("Y"))
         {
             binaryToDecimal();
