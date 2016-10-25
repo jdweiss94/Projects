@@ -19,7 +19,7 @@ public class binaryToDecimal {
       //Creates scanner
       Scanner scan = new Scanner(System.in);
       System.out.println("(E)asy, (M)edium, or (H)ard");
-      String difficulty = scan.nextLine();
+      String difficulty = scan.next();
       if(difficulty.equalsIgnoreCase("E"))
       {
           easy();
@@ -61,7 +61,7 @@ public class binaryToDecimal {
         }
         //Sees if user wants to go again
         System.out.println("Go again? (Y)es or (N)o.");
-        String choice = scan.nextLine();
+        String choice = scan.next();
         if(choice.equalsIgnoreCase("Y"))
         {
             binaryToDecimal();
@@ -99,7 +99,7 @@ public class binaryToDecimal {
         }
         //Sees if user wants to go again
         System.out.println("Go again? (Y)es or (N)o.");
-        String choice = scan.nextLine();
+        String choice = scan.next();
         if(choice.equalsIgnoreCase("Y"))
         {
             binaryToDecimal();
@@ -137,7 +137,7 @@ public class binaryToDecimal {
         }
         //Sees if user wants to go again
         System.out.println("Go again? (Y)es or (N)o.");
-        String choice = scan.nextLine();
+        String choice = scan.next();
         if(choice.equalsIgnoreCase("Y"))
         {
             binaryToDecimal();
