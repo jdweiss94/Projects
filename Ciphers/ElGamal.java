@@ -58,10 +58,6 @@ public class ElGamal {
 		
 		scan.close();
 	}
-	public static void choices()
-	{
-				
-	}
 	public static void encrypt()
 	{
 		SecureRandom random = new SecureRandom();
