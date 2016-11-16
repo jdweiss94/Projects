@@ -25,9 +25,5 @@ public class PolyFunctions {
 		int x = 0;
 		return x;
 	}
-	public void matrixMultiply(int[][] a, int[][]b)
-	{
-		
-	}
 }
  
