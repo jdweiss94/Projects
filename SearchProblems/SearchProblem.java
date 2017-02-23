@@ -1,4 +1,8 @@
+import java.util.ArrayDeque;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Stack;
@@ -88,6 +92,16 @@ public class SearchProblem {
 		 * -- I recommend Java's HashSet class for the visited set.  It implements the discrete math concept of a set using a
 		 * hash table.
 		 */
+		if(start.equals(goal))
+		{
+			return new SearchNode(start);
+		}
+		else
+		{
+			Queue<SearchNode> sets = new ArrayDeque<SearchNode>();
+			HashSet<State> visitedStates = new HashSet<State>();
+			visitedStates.add(start);
+		}
 		
 		return null;
 	}
@@ -137,7 +151,17 @@ public class SearchProblem {
 		 * IMPORTANT: Don't just call my A* Search implementation with a heuristic function that always returns 0.  Technically,
 		 * that would in fact be equivalent to Uniform Cost Search, but I want to see that you can implement Uniform Cost Search.
 		 */
-		
+		if(start.equals(goal))
+		{
+			return new SearchNode(start);
+		}
+		else
+		{
+			HashMap<State, Integer> visitedStates = new HashMap<State, Integer>();
+			visitedStates.put(start, 0);
+			
+			
+		}
 				
 		return null;
 	}
