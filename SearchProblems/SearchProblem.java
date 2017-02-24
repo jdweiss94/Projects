@@ -94,45 +94,44 @@ public class SearchProblem {
 		 * -- I recommend Java's HashSet class for the visited set.  It implements the discrete math concept of a set using a
 		 * hash table.
 		 */
-
-		Queue<SearchNode> frontier = new LinkedList<SearchNode>();
-		Set<State> visitedStates = new HashSet<State>();
-		
 		if(start.equals(goal))
 		{
-			//return start as a SearchNode
-			SearchNode startIsGoal = new SearchNode(start);
-			return startIsGoal;
+			return new SearchNode(start);
 				
 		}
-		
-		visitedStates.add(start);
-		SearchNode startNode = new SearchNode(start);
-		frontier.add(startNode);
-		
-		while(!frontier.isEmpty())
+		else
 		{
-			SearchNode s = frontier.poll();
-			State temp = s.getState();
-			Collection<State> succecsor = temp.getSuccessors();
-			for(State e: succecsor)
+			Queue<SearchNode> frontier = new LinkedList<SearchNode>();
+			Set<State> visitedStates = new HashSet<State>();
+			visitedStates.add(start);
+			SearchNode startNode = new SearchNode(start);
+			frontier.add(startNode);
+			
+			while(!frontier.isEmpty())
 			{
-				if(e.isGoalState())
+				SearchNode s = frontier.poll();
+				State temp = s.getState();
+				Collection<State> succecsor = temp.getSuccessors();
+				for(State e: succecsor)
 				{
-					SearchNode goal = new SearchNode(e, s);
-					return goal;
-						
-				}
-				else
-				{
-					if(!visitedStates.contains(e))
+					if(e.isGoalState())
 					{
-						visitedStates.add(e);
-						SearchNode temp2 = new SearchNode(e, s);
-						frontier.add(temp2);
+						SearchNode goal = new SearchNode(e, s);
+						return goal;
+							
+					}
+					else
+					{
+						if(!visitedStates.contains(e))
+						{
+							visitedStates.add(e);
+							SearchNode temp2 = new SearchNode(e, s);
+							frontier.add(temp2);
+						}
 					}
 				}
 			}
+		
 		}
 		
 		return null;
@@ -231,6 +230,42 @@ public class SearchProblem {
 		 *
 		 * -- I gave you an unimplemented helper method for checking the path (see isOnPath below).  Implement that first as you will need it for 4.b.ii above. 
 		 */
+		if(start.equals(goal))
+		{
+			return new SearchNode(start);
+				
+		}
+		else
+		{
+			Stack<SearchNode> frontier = new Stack<SearchNode>();
+			SearchNode startNode = new SearchNode(start);
+			frontier.push(startNode);
+			
+			while(!frontier.isEmpty())
+			{
+				SearchNode s = frontier.pop();
+				State temp = s.getState();
+				Collection<State> succecsor = temp.getSuccessors();
+				for(State e: succecsor)
+				{
+					if(e.isGoalState())
+					{
+						return new SearchNode(e, s);
+							
+					}
+					else
+					{
+						if(!visitedStates.contains(e))
+						{
+							visitedStates.add(e);
+							SearchNode temp2 = new SearchNode(e, s);
+							frontier.add(temp2);
+						}
+					}
+				}
+			}
+		
+		}
 	
 		return null;
 	}
