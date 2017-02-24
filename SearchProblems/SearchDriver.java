@@ -69,7 +69,7 @@ public class SearchDriver {
 		
 		
 		// If you want to time your code, you need this object.
-		ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+		
 		
 		// Call this method before running any search algorithm to reset the
 		// code that is tracking the number of State expansions.
@@ -77,6 +77,7 @@ public class SearchDriver {
 		SimpleGraphSearchProblem[] problemArray = new SimpleGraphSearchProblem[10];
 		for(int i = 0; i < 10; i++)
 		{
+			ThreadMXBean bean = ManagementFactory.getThreadMXBean();
 			System.out.println("BFS");
 			problemArray[i] = new SimpleGraphSearchProblem(100,0.1,false);
 			// example of how to time a method call (for cpu time)
@@ -106,6 +107,7 @@ public class SearchDriver {
 		
 		for(int i = 0; i < 10; i++)
 		{
+			ThreadMXBean bean = ManagementFactory.getThreadMXBean();
 			problemArray[i] = new SimpleGraphSearchProblem(100,0.1,false);
 			System.out.println();
 			System.out.println("Uniform Cost Search");

@@ -185,57 +185,57 @@ public class SearchProblem {
 		 * IMPORTANT: Don't just call my A* Search implementation with a heuristic function that always returns 0.  Technically,
 		 * that would in fact be equivalent to Uniform Cost Search, but I want to see that you can implement Uniform Cost Search.
 		 */
-		SearchNodeComparator PQcompare = new SearchNodeComparator();
-		PQ<SearchNode> fronteir = new PQ<SearchNode>(PQcompare);
-		
-		HashMap<State, Integer> visited = new HashMap<State, Integer>();
 		
 		
-		if(start == goal){
-			//return start as a SearchNode
-			SearchNode startIsGoal = new SearchNode(start);
-			return startIsGoal;
-				
+		
+		if(start.equals(goal)){
+			return new SearchNode(start);
 		}
-		
-		visited.put(start, 0);
-		SearchNode startNode = new SearchNode(start);
-		fronteir.add(startNode);
-		
-		while(!fronteir.isEmpty()){
-			SearchNode s = fronteir.poll();
-			if(s.getState().isGoalState()){
-				return s;
-			}
-			State tempState = s.getState();
-			Collection<State> succecsors = tempState.getSuccessors();
-			for(State e: succecsors ){
-				if(!visited.containsKey(e)){
-					SearchNode tempNode = new SearchNode(e, s);
-					fronteir.add(tempNode);
-					
-					int tempG = tempNode.getG();
-					State eState = tempNode.getState();
-					visited.put(eState, tempG);			
+		else
+		{
+			HashMap<State, Integer> visitedState = new HashMap<State, Integer>();
+			SearchNodeComparator comp = new SearchNodeComparator();
+			PQ<SearchNode> frontier = new PQ<SearchNode>(comp);
+			visitedState.put(start, 0);
+			SearchNode startNode = new SearchNode(start);
+			frontier.add(startNode);
 			
-		}
-				else{
-				int oldG = visited.get(e);
-				SearchNode newE = new SearchNode(e ,s);
-				int newG = newE.getG();
-				if(newG < oldG){
-					visited.put(e, newG);
-					fronteir.add(newE);
+			while(!frontier.isEmpty())
+			{
+				SearchNode s = frontier.poll();
+				State sState = s.getState();
+				if(sState.isGoalState())
+				{
+					return s;
 				}
-					
-				
-				
-				
-					
-				}
+				State temp = s.getState();
+				Collection<State> successors = temp.getSuccessors();
+				for(State e: successors )
+				{
+					if(!visitedState.containsKey(e))
+					{
+						SearchNode temp2 = new SearchNode(e, s);
+						frontier.add(temp2);
+						
+						int g = temp2.getG();
+						State eState = temp2.getState();
+						visitedState.put(eState, g);			
 			}
-		
-		}	
+					else
+					{
+						int firstG = visitedState.get(e);
+						SearchNode secondE = new SearchNode(e ,s);
+						int secondG = secondE.getG();
+						if(secondG < firstG)
+						{
+							visitedState.put(e, secondG);
+							frontier.add(secondE);
+						}
+					}
+				}
+			
+			}	
+		}
 				
 		return null;
 	}
@@ -287,8 +287,8 @@ public class SearchProblem {
 			{
 				SearchNode s = frontier.pop();
 				State temp = s.getState();
-				Collection<State> succecsor = temp.getSuccessors();
-				for(State e: succecsor)
+				Collection<State> successors = temp.getSuccessors();
+				for(State e: successors)
 				{
 					if(e.isGoalState())
 					{
