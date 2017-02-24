@@ -1,11 +1,13 @@
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
+import java.util.Stack;
 
 /**
- * 
+ * Justin Weiss
+ * Chris Heeneke
  */
 public class SearchDriver {
-
+ private static  State stae;
 	/**
 	 * Prints (to System.out) the path from the start to the goal implied by the backpointers.
 	 * @param goal The end of the path that must be printed.
@@ -34,6 +36,21 @@ public class SearchDriver {
 		 * in a SearchNode with a null backpointer.
 		 * 
 		 */
+		Stack<String> path = new Stack<String>();
+		SearchNode checker = goal;
+		while(checker != null)
+		{
+			State tempState = checker.getState();
+			String tempString = tempState.toString();
+			path.push(tempString);
+			checker = checker.getBackpointer();
+		}
+		String output = "";
+		while(!path.isEmpty())
+		{
+			output = output + " " + path.pop();
+		}
+		System.out.println("Solution Path: " + output);
 	}
 	
 	
@@ -58,13 +75,13 @@ public class SearchDriver {
 		// code that is tracking the number of State expansions.
 		State.resetStats();
 		SimpleGraphSearchProblem[] problemArray = new SimpleGraphSearchProblem[10];
-		for(int i = 0; i < problemArray.length; i++)
+		for(int i = 0; i < 10; i++)
 		{
 			System.out.println("BFS");
-			
+			problemArray[i] = new SimpleGraphSearchProblem(100,0.1,false);
 			// example of how to time a method call (for cpu time)
 			long start = bean.getCurrentThreadCpuTime();
-			SearchNode solution = problem.bfs();
+			SearchNode solution = problemArray[i].bfs();
 			long totalTime = bean.getCurrentThreadCpuTime() - start;
 			System.out.println("Time: " + (totalTime/1000000000.0));
 			// time is in nanoseconds, so divide by 1000000000.0 to get seconds
@@ -80,26 +97,32 @@ public class SearchDriver {
 			} else {
 				System.out.println("No solution found");
 			}
+			System.out.println("---------------------");
 		}
 		
 		
 		
 		State.resetStats();
 		
-		System.out.println();
-		System.out.println("Uniform Cost Search");
-		long start = bean.getCurrentThreadCpuTime();
-		long solution = problem.uniformCostSearch();
-		long totalTime = bean.getCurrentThreadCpuTime() - start;
-		System.out.println("Time: " + (totalTime/1000000000.0));
-		System.out.println("Expanded: " + State.getNumExpandedStates());
-		
-		if (solution != null) {
-			System.out.println("Path length: " + solution.getPathLengthToNode());
-			System.out.println("Path cost: " + solution.getG());
-			printSolutionPath(solution);
-		} else {
-			System.out.println("No solution found");
+		for(int i = 0; i < 10; i++)
+		{
+			problemArray[i] = new SimpleGraphSearchProblem(100,0.1,false);
+			System.out.println();
+			System.out.println("Uniform Cost Search");
+			long start = bean.getCurrentThreadCpuTime();
+			SearchNode solution = problemArray[i].uniformCostSearch();
+			long totalTime = bean.getCurrentThreadCpuTime() - start;
+			System.out.println("Time: " + (totalTime/1000000000.0));
+			System.out.println("Expanded: " + State.getNumExpandedStates());
+			
+			if (solution != null) {
+				System.out.println("Path length: " + solution.getPathLengthToNode());
+				System.out.println("Path cost: " + solution.getG());
+				printSolutionPath(solution);
+			} else {
+				System.out.println("No solution found");
+			}
+			System.out.println("---------------------");
 		}
 				
 		//SimpleGraphSearchProblem[] nextProblem = new SimpleGraphSearchProblem[10];

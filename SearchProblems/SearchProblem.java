@@ -17,6 +17,9 @@ import java.util.Stack;
  * Multiple of our assignments will involve implementing search algorithms in 
  * this Java class.
  * 
+ * Justin Weiss
+ * Chris Heeneke
+ * 
  */
 public class SearchProblem {
 
@@ -182,17 +185,57 @@ public class SearchProblem {
 		 * IMPORTANT: Don't just call my A* Search implementation with a heuristic function that always returns 0.  Technically,
 		 * that would in fact be equivalent to Uniform Cost Search, but I want to see that you can implement Uniform Cost Search.
 		 */
-		if(start.equals(goal))
-		{
-			return new SearchNode(start);
+		SearchNodeComparator PQcompare = new SearchNodeComparator();
+		PQ<SearchNode> fronteir = new PQ<SearchNode>(PQcompare);
+		
+		HashMap<State, Integer> visited = new HashMap<State, Integer>();
+		
+		
+		if(start == goal){
+			//return start as a SearchNode
+			SearchNode startIsGoal = new SearchNode(start);
+			return startIsGoal;
+				
 		}
-		else
-		{
-			HashMap<State, Integer> visitedStates = new HashMap<State, Integer>();
-			visitedStates.put(start, 0);
-			
+		
+		visited.put(start, 0);
+		SearchNode startNode = new SearchNode(start);
+		fronteir.add(startNode);
+		
+		while(!fronteir.isEmpty()){
+			SearchNode s = fronteir.poll();
+			if(s.getState().isGoalState()){
+				return s;
+			}
+			State tempState = s.getState();
+			Collection<State> succecsors = tempState.getSuccessors();
+			for(State e: succecsors ){
+				if(!visited.containsKey(e)){
+					SearchNode tempNode = new SearchNode(e, s);
+					fronteir.add(tempNode);
+					
+					int tempG = tempNode.getG();
+					State eState = tempNode.getState();
+					visited.put(eState, tempG);			
 			
 		}
+				else{
+				int oldG = visited.get(e);
+				SearchNode newE = new SearchNode(e ,s);
+				int newG = newE.getG();
+				if(newG < oldG){
+					visited.put(e, newG);
+					fronteir.add(newE);
+				}
+					
+				
+				
+				
+					
+				}
+			}
+		
+		}	
 				
 		return null;
 	}
