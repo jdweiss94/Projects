@@ -57,37 +57,40 @@ public class SearchDriver {
 		// Call this method before running any search algorithm to reset the
 		// code that is tracking the number of State expansions.
 		State.resetStats();
-		
-		
-		System.out.println("BFS");
-		
-		// example of how to time a method call (for cpu time)
-		long start = bean.getCurrentThreadCpuTime();
-		SearchNode solution = problem.bfs();
-		long totalTime = bean.getCurrentThreadCpuTime() - start;
-		System.out.println("Time: " + (totalTime/1000000000.0));
-		// time is in nanoseconds, so divide by 1000000000.0 to get seconds
-		
-		// example of accessing the number of expanded states
-		System.out.println("Expanded: " + State.getNumExpandedStates());
-		
-		// example of getting the path, its cost, etc.
-		if (solution != null) {
-			System.out.println("Path length: " + solution.getPathLengthToNode());
-			System.out.println("Path cost: " + solution.getG());
-			printSolutionPath(solution);
-		} else {
-			System.out.println("No solution found");
+		SimpleGraphSearchProblem[] problemArray = new SimpleGraphSearchProblem[10];
+		for(int i = 0; i < problemArray.length; i++)
+		{
+			System.out.println("BFS");
+			
+			// example of how to time a method call (for cpu time)
+			long start = bean.getCurrentThreadCpuTime();
+			SearchNode solution = problem.bfs();
+			long totalTime = bean.getCurrentThreadCpuTime() - start;
+			System.out.println("Time: " + (totalTime/1000000000.0));
+			// time is in nanoseconds, so divide by 1000000000.0 to get seconds
+			
+			// example of accessing the number of expanded states
+			System.out.println("Expanded: " + State.getNumExpandedStates());
+			
+			// example of getting the path, its cost, etc.
+			if (solution != null) {
+				System.out.println("Path length: " + solution.getPathLengthToNode());
+				System.out.println("Path cost: " + solution.getG());
+				printSolutionPath(solution);
+			} else {
+				System.out.println("No solution found");
+			}
 		}
+		
 		
 		
 		State.resetStats();
 		
 		System.out.println();
 		System.out.println("Uniform Cost Search");
-		start = bean.getCurrentThreadCpuTime();
-		solution = problem.uniformCostSearch();
-		totalTime = bean.getCurrentThreadCpuTime() - start;
+		long start = bean.getCurrentThreadCpuTime();
+		long solution = problem.uniformCostSearch();
+		long totalTime = bean.getCurrentThreadCpuTime() - start;
 		System.out.println("Time: " + (totalTime/1000000000.0));
 		System.out.println("Expanded: " + State.getNumExpandedStates());
 		
@@ -98,10 +101,40 @@ public class SearchDriver {
 		} else {
 			System.out.println("No solution found");
 		}
-		
-		
-		
-		
+				
+		//SimpleGraphSearchProblem[] nextProblem = new SimpleGraphSearchProblem[10];
+	
+				
+				// Call this method before running any search algorithm to reset the
+				// code that is tracking the number of State expansions.
+				//State.resetStats();
+				
+				//for(int i = 0; i < nextProblem.length; i++)
+				//{
+				//	nextProblem[i] = problem;
+				//	System.out.println("DFS");
+					
+					// example of how to time a method call (for cpu time)
+				//	start = bean.getCurrentThreadCpuTime();
+				//	solution = nextProblem[i].dfs();
+				//	totalTime = bean.getCurrentThreadCpuTime() - start;
+				//	System.out.println("Time: " + (totalTime/1000000000.0));
+					// time is in nanoseconds, so divide by 1000000000.0 to get seconds
+					
+					// example of accessing the number of expanded states
+				//	System.out.println("Expanded: " + State.getNumExpandedStates());
+					
+					// example of getting the path, its cost, etc.
+				//	if (solution != null) {
+				//		System.out.println("Path length: " + solution.getPathLengthToNode());
+				//		System.out.println("Path cost: " + solution.getG());
+				//		printSolutionPath(solution);
+				//	} else {
+				//		System.out.println("No solution found");
+				//	}
+				//}
+				
+				
 		
 		
 	}

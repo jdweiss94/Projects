@@ -233,7 +233,6 @@ public class SearchProblem {
 		if(start.equals(goal))
 		{
 			return new SearchNode(start);
-				
 		}
 		else
 		{
@@ -255,16 +254,18 @@ public class SearchProblem {
 					}
 					else
 					{
-						if(!visitedStates.contains(e))
+						if(isOnPath(s,e))
 						{
-							visitedStates.add(e);
-							SearchNode temp2 = new SearchNode(e, s);
-							frontier.add(temp2);
+							SearchNode temp2 = new SearchNode(e);
+							frontier.push(temp2);
+						}
+						else
+						{
+							return null;
 						}
 					}
 				}
-			}
-		
+			}		
 		}
 	
 		return null;
