@@ -1,8 +1,10 @@
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Stack;
@@ -92,15 +94,45 @@ public class SearchProblem {
 		 * -- I recommend Java's HashSet class for the visited set.  It implements the discrete math concept of a set using a
 		 * hash table.
 		 */
+
+		Queue<SearchNode> frontier = new LinkedList<SearchNode>();
+		Set<State> visitedStates = new HashSet<State>();
+		
 		if(start.equals(goal))
 		{
-			return new SearchNode(start);
+			//return start as a SearchNode
+			SearchNode startIsGoal = new SearchNode(start);
+			return startIsGoal;
+				
 		}
-		else
+		
+		visitedStates.add(start);
+		SearchNode startNode = new SearchNode(start);
+		frontier.add(startNode);
+		
+		while(!frontier.isEmpty())
 		{
-			Queue<SearchNode> sets = new ArrayDeque<SearchNode>();
-			HashSet<State> visitedStates = new HashSet<State>();
-			visitedStates.add(start);
+			SearchNode s = frontier.poll();
+			State temp = s.getState();
+			Collection<State> succecsor = temp.getSuccessors();
+			for(State e: succecsor)
+			{
+				if(e.isGoalState())
+				{
+					SearchNode goal = new SearchNode(e, s);
+					return goal;
+						
+				}
+				else
+				{
+					if(!visitedStates.contains(e))
+					{
+						visitedStates.add(e);
+						SearchNode temp2 = new SearchNode(e, s);
+						frontier.add(temp2);
+					}
+				}
+			}
 		}
 		
 		return null;
