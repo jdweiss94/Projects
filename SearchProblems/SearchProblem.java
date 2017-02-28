@@ -292,12 +292,12 @@ public class SearchProblem {
 				{
 					if(e.isGoalState())
 					{
-						return new SearchNode(e, s);
+						return new SearchNode(e,s);
 							
 					}
 					else
 					{
-						if(isOnPath(s,e))
+						if(isOnPath(new SearchNode(e), s.getState()))
 						{
 							SearchNode temp2 = new SearchNode(e);
 							frontier.push(temp2);
@@ -329,16 +329,16 @@ public class SearchProblem {
 		}
 		else
 		{
-			SearchNode backPointer = pathEnd;
-			while(backPointer != null)
+			while(pathEnd!= null)
 			{
-				if(s.equals(backPointer.getState()))
+				if(s.equals(pathEnd.getState()))
 				{
 					return true;
 				}
 				else
 				{
-					backPointer = backPointer.getBackpointer();
+					System.out.println(pathEnd.getState().toString());
+					pathEnd = pathEnd.getBackpointer();
 				}
 				
 			}
