@@ -297,20 +297,15 @@ public class SearchProblem {
 					}
 					else
 					{
-						if(isOnPath(new SearchNode(e), s.getState()))
+						if(!isOnPath(s, e))
 						{
-							SearchNode temp2 = new SearchNode(e);
+							SearchNode temp2 = new SearchNode(e, s);
 							frontier.push(temp2);
-						}
-						else
-						{
-							return null;
 						}
 					}
 				}
 			}		
 		}
-	
 		return null;
 	}
 	
@@ -329,7 +324,7 @@ public class SearchProblem {
 		}
 		else
 		{
-			while(pathEnd!= null)
+			while(pathEnd != null)
 			{
 				if(s.equals(pathEnd.getState()))
 				{
@@ -337,7 +332,6 @@ public class SearchProblem {
 				}
 				else
 				{
-					System.out.println(pathEnd.getState().toString());
 					pathEnd = pathEnd.getBackpointer();
 				}
 				
@@ -391,7 +385,14 @@ public class SearchProblem {
 		* 4. If solution not found, increase limit by 1, and go back to step 3 (repeat until either solution found or depthLimitedDFS doesn't actually limit anything).
 		* 5. If no solution found, return null.
 		*/
-		
+		if(start.equals(goal))
+		{
+			return new SearchNode(start);
+		}
+		else
+		{
+			int limit = 1;
+		}
 		return null;
 	}	
 	
