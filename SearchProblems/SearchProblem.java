@@ -323,7 +323,26 @@ public class SearchProblem {
 		// check if s is in node pathEnd, and if so return true.
 		// otherwise, follow the backpointers until you either find a node that contains s (in which case return true)
 		// or until you find a null backpointer (in which case return false)
-		
+		if(s.equals(pathEnd.getState()))
+		{
+			return true;
+		}
+		else
+		{
+			SearchNode backPointer = pathEnd;
+			while(backPointer != null)
+			{
+				if(s.equals(backPointer.getState()))
+				{
+					return true;
+				}
+				else
+				{
+					backPointer = backPointer.getBackpointer();
+				}
+				
+			}
+		}
 		return false;
 	}
 	
