@@ -4,7 +4,7 @@ import java.util.Scanner;
  * Justin Weiss
  * Chris Heeneke
  */
-public class playfairCipher
+public class PlayfairCipher
 {
     //Sets global variables
     static StringBuilder sb = new StringBuilder();
