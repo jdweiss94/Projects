@@ -30,6 +30,10 @@ public class MemoryAllocationScheme {
 		{
 			firstFit(partitions, jobs);
 		}
+		else if(input.equalsIgnoreCase("bestfit"))
+		{
+			bestFit(partitions, jobs);
+		}
 		scan.close();
 		
 	}
@@ -52,26 +56,74 @@ public class MemoryAllocationScheme {
 				{
 					fragmentation = fragmentation + (free[z] - jobs[i]);
 					busy.put(free[z], jobs[i]);
-					System.out.println("Job " + i + " arrives.");
+					//System.out.println("Job " + i + " arrives.");
 					free[z] = 0;
-					jobs[i] = 0;
 					break;
 				}
 			}
 		}
-		System.out.println(partitions[0]);
 		System.out.println("Partition Size \t Memory Address \t Access \t Partition Status");
 		System.out.println("-----------------------------------------------------------------------------");
+		int memoryAddress = 0;
 		for(int i = 0; i < free.length; i++)
 		{
+			memoryAddress = memoryAddress + partitions[i];
 			if(free[i] == 0)
 			{
-				System.out.println(partitions[i] + "\t\t\t" + i + "\t\t" + busy.get(partitions[i]) + "\t\t\t Busy");
+				System.out.println(partitions[i] + "\t\t\t" + memoryAddress + "\t\t Job " + i + "\t\t\t Busy");
 			}
 			else
 			{
-				System.out.println(free[i] + "\t\t\t" + i + "\t\t\t\t\t Free");
+				System.out.println(free[i] + "\t\t\t" + memoryAddress + "\t\t\t\t\t Free");
 			}
 		}
+		System.out.println("Total Fragmentation: " + fragmentation);
+	}
+	public static void bestFit(int[] free, int[] jobs)
+	{
+		int[] partitions = new int[free.length];
+		int tempFrag = 0;
+		for(int i = 0; i < free.length; i++)
+		{
+			partitions[i] = free[i];
+		}
+		HashMap<Integer, Integer> busy = new HashMap<Integer, Integer>();
+		int fragmentation = 0;
+		
+		for(int i = 0; i < jobs.length; i ++)
+		{
+			
+			for(int z = 0; z < free.length; z++)
+			{
+				if(free[z] >= jobs[i])
+				{
+					if(tempFrag < (free[z] - jobs[i]))
+					{
+						
+					}
+					fragmentation = fragmentation + (free[z] - jobs[i]);
+					busy.put(free[z], jobs[i]);
+					//System.out.println("Job " + i + " arrives.");
+					free[z] = 0;
+					break;
+				}
+			}
+		}
+		System.out.println("Partition Size \t Memory Address \t Access \t Partition Status");
+		System.out.println("-----------------------------------------------------------------------------");
+		int memoryAddress = 0;
+		for(int i = 0; i < free.length; i++)
+		{
+			memoryAddress = memoryAddress + partitions[i];
+			if(free[i] == 0)
+			{
+				System.out.println(partitions[i] + "\t\t\t" + memoryAddress + "\t\t Job " + i + "\t\t\t Busy");
+			}
+			else
+			{
+				System.out.println(free[i] + "\t\t\t" + memoryAddress + "\t\t\t\t\t Free");
+			}
+		}
+		System.out.println("Total Fragmentation: " + fragmentation);
 	}
 }
