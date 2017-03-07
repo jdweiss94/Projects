@@ -128,7 +128,8 @@ public class SearchDriver {
 			}
 			System.out.println("---------------------");
 		}
-				
+		
+		State.resetStats();
 		for(int i = 0; i < 10; i++)
 		{
 			ThreadMXBean bean = ManagementFactory.getThreadMXBean();
@@ -154,7 +155,57 @@ public class SearchDriver {
 			System.out.println("---------------------");
 		}
 				
-				
+		State.resetStats();
+		for(int i = 0; i < 10; i++)
+		{
+			ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+			System.out.println("DepthLimited DFS");
+			// example of how to time a method call (for cpu time)
+			long start = bean.getCurrentThreadCpuTime();
+			SearchNode solution = problemArray[i].depthLimitedDFS(10000);
+			long totalTime = bean.getCurrentThreadCpuTime() - start;
+			System.out.println("Time: " + (totalTime/1000000000.0));
+			// time is in nanoseconds, so divide by 1000000000.0 to get seconds
+			
+			// example of accessing the number of expanded states
+			System.out.println("Expanded: " + State.getNumExpandedStates());
+			
+			// example of getting the path, its cost, etc.
+			if (solution != null) {
+				System.out.println("Path length: " + solution.getPathLengthToNode());
+				System.out.println("Path cost: " + solution.getG());
+				printSolutionPath(solution);
+			} else {
+				System.out.println("No solution found");
+			}
+			System.out.println("---------------------");
+		}
+		
+		State.resetStats();
+		for(int i = 0; i < 10; i++)
+		{
+			ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+			System.out.println("Iterative Deepening");
+			// example of how to time a method call (for cpu time)
+			long start = bean.getCurrentThreadCpuTime();
+			SearchNode solution = problemArray[i].iterativeDeepeningSearch();
+			long totalTime = bean.getCurrentThreadCpuTime() - start;
+			System.out.println("Time: " + (totalTime/1000000000.0));
+			// time is in nanoseconds, so divide by 1000000000.0 to get seconds
+			
+			// example of accessing the number of expanded states
+			System.out.println("Expanded: " + State.getNumExpandedStates());
+			
+			// example of getting the path, its cost, etc.
+			if (solution != null) {
+				System.out.println("Path length: " + solution.getPathLengthToNode());
+				System.out.println("Path cost: " + solution.getG());
+				printSolutionPath(solution);
+			} else {
+				System.out.println("No solution found");
+			}
+			System.out.println("---------------------");
+		}
 		
 		
 	}
