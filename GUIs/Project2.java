@@ -5,21 +5,19 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 public class Project2 {
 
-	private JFrame frame;
+	private JFrame frmProject;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private JTextField txtJobs;
@@ -33,7 +31,7 @@ public class Project2 {
 			public void run() {
 				try {
 					Project2 window = new Project2();
-					window.frame.setVisible(true);
+					window.frmProject.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,14 +50,15 @@ public class Project2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 621, 478);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmProject = new JFrame();
+		frmProject.setTitle("Project 2");
+		frmProject.setBounds(100, 100, 621, 478);
+		frmProject.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmProject.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(28, 11, 144, 58);
-		frame.getContentPane().add(panel);
+		frmProject.getContentPane().add(panel);
 		
 		JLabel lblChooseTypeOf = new JLabel("Choose Type of Memory");
 		panel.add(lblChooseTypeOf);
@@ -75,7 +74,7 @@ public class Project2 {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(393, 11, 151, 80);
-		frame.getContentPane().add(panel_1);
+		frmProject.getContentPane().add(panel_1);
 		
 		JLabel lblChooseAlgorithm = new JLabel("Choose Algorithm");
 		panel_1.add(lblChooseAlgorithm);
@@ -100,18 +99,18 @@ public class Project2 {
 		JSpinner spinnerJobs = new JSpinner();
 		spinnerJobs.setModel(new SpinnerNumberModel(0, 0, 10, 1));
 		spinnerJobs.setBounds(515, 97, 29, 20);
-		frame.getContentPane().add(spinnerJobs);
+		frmProject.getContentPane().add(spinnerJobs);
 		
 		JSpinner spinnerPartitions = new JSpinner();
 		spinnerPartitions.setModel(new SpinnerNumberModel(0, 0, 10, 1));
 		spinnerPartitions.setBounds(173, 97, 29, 20);
-		frame.getContentPane().add(spinnerPartitions);
+		frmProject.getContentPane().add(spinnerPartitions);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(28, 181, 516, 214);
-		frame.getContentPane().add(scrollPane);
+		frmProject.getContentPane().add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setWrapStyleWord(true);
@@ -121,7 +120,7 @@ public class Project2 {
 		txtPartitions = new JTextField();
 		txtPartitions.setColumns(10);
 		txtPartitions.setBounds(28, 150, 174, 20);
-		frame.getContentPane().add(txtPartitions);
+		frmProject.getContentPane().add(txtPartitions);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
@@ -185,32 +184,32 @@ public class Project2 {
 			}
 		});
 		btnStart.setBounds(251, 406, 89, 23);
-		frame.getContentPane().add(btnStart);
+		frmProject.getContentPane().add(btnStart);
 		
 		
 		
 		JLabel lblNumberOfPartitions = new JLabel("Number of Partitions");
 		lblNumberOfPartitions.setBounds(28, 100, 134, 14);
-		frame.getContentPane().add(lblNumberOfPartitions);
+		frmProject.getContentPane().add(lblNumberOfPartitions);
 		
 		JLabel lblListJobSizes = new JLabel("List Job Sizes Seperated by Space");
 		lblListJobSizes.setBounds(370, 125, 272, 14);
-		frame.getContentPane().add(lblListJobSizes);
+		frmProject.getContentPane().add(lblListJobSizes);
 		
 		txtJobs = new JTextField();
 		txtJobs.setBounds(370, 150, 174, 20);
-		frame.getContentPane().add(txtJobs);
+		frmProject.getContentPane().add(txtJobs);
 		txtJobs.setColumns(10);
 		
 		
 		
 		JLabel lblNumberOfJobs = new JLabel("Number of Jobs");
 		lblNumberOfJobs.setBounds(370, 100, 134, 14);
-		frame.getContentPane().add(lblNumberOfJobs);
+		frmProject.getContentPane().add(lblNumberOfJobs);
 		
 		JLabel label = new JLabel("List Job Sizes Seperated by Space");
 		label.setBounds(28, 125, 257, 14);
-		frame.getContentPane().add(label);
+		frmProject.getContentPane().add(label);
 		
 		
 		

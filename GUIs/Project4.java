@@ -8,21 +8,15 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.awt.event.ActionEvent;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
 
 public class Project4 {
 
-	private JFrame frame;
+	private JFrame frmProject;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txtJobs;
 	private JTextField txtArrival;
@@ -36,7 +30,7 @@ public class Project4 {
 			public void run() {
 				try {
 					Project4 window = new Project4();
-					window.frame.setVisible(true);
+					window.frmProject.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,15 +49,16 @@ public class Project4 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 453, 408);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmProject = new JFrame();
+		frmProject.setTitle("Project 4");
+		frmProject.setBounds(100, 100, 453, 408);
+		frmProject.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmProject.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setBounds(23, 11, 162, 98);
-		frame.getContentPane().add(panel);
+		frmProject.getContentPane().add(panel);
 		
 		JLabel lblSelectYourAlgorithm = new JLabel("Select Your Algorithm");
 		panel.add(lblSelectYourAlgorithm);
@@ -87,21 +82,21 @@ public class Project4 {
 		JTextArea txtSolution = new JTextArea();
 		JScrollPane scrollPane = new JScrollPane(txtSolution);
 		scrollPane.setBounds(10, 120, 417, 215);
-		frame.getContentPane().add(scrollPane);
+		frmProject.getContentPane().add(scrollPane);
 		
 		txtJobs = new JTextField();
 		txtJobs.setBounds(308, 11, 86, 20);
-		frame.getContentPane().add(txtJobs);
+		frmProject.getContentPane().add(txtJobs);
 		txtJobs.setColumns(10);
 		
 		txtArrival = new JTextField();
 		txtArrival.setBounds(308, 42, 86, 20);
-		frame.getContentPane().add(txtArrival);
+		frmProject.getContentPane().add(txtArrival);
 		txtArrival.setColumns(10);
 		
 		txtCPU = new JTextField();
 		txtCPU.setBounds(308, 73, 86, 20);
-		frame.getContentPane().add(txtCPU);
+		frmProject.getContentPane().add(txtCPU);
 		txtCPU.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");
@@ -125,33 +120,33 @@ public class Project4 {
 				}
 				if (rdbtnFcfs.isSelected()) 
 				{
-					output = output + "First Come First Serve";
+					output = output + "First Come First Serve:";
 					FCFS fcfs = new FCFS();
 					fcfs.fcfs(tasks);
 				}
 
 				else if (rdbtnSjn.isSelected()) 
 				{
-					output = output + "Shortest Job Remaining";
+					output = output + "Shortest Job Remaining:";
 					SJN sjn = new SJN();
 					sjn.SJNrunner(tasks);
 				}
 
 				else if (rdbtnSrt.isSelected()) 
 				{
-					output = output + "Shortest Remaining Time";
+					output = output + "Shortest Remaining Time:";
 					SRT srt = new SRT();
 					srt.SRTrunner(tasks);
 				}
 
 				else if (rdbtnRoundRobin.isSelected()) 
 				{
-					output = output + "Round Robin";
+					output = output + "Round Robin:";
 					RoundRobin roro = new RoundRobin();
 					roro.Robinrunner(tasks);
 				}
 				output = output + "\n Job \t Arrival \t CPU Cycle \t Wait Time \t Turn Around";
-				output = output + "\n--------------------------------------------------------------------------------------------------" ;
+				output = output + "\n------------------------------------------------------------------------------------------------------------" ;
 				for (Solve temp : tasks) 
 				{
 					output = output + "\n" + temp;
@@ -164,18 +159,18 @@ public class Project4 {
 				}
 		});
 		btnSubmit.setBounds(170, 346, 89, 23);
-		frame.getContentPane().add(btnSubmit);
+		frmProject.getContentPane().add(btnSubmit);
 		
 		JLabel lblJobs = new JLabel("Jobs");
 		lblJobs.setBounds(195, 14, 46, 14);
-		frame.getContentPane().add(lblJobs);
+		frmProject.getContentPane().add(lblJobs);
 		
 		JLabel lblArrivalTime = new JLabel("Arrival Time");
 		lblArrivalTime.setBounds(195, 45, 76, 14);
-		frame.getContentPane().add(lblArrivalTime);
+		frmProject.getContentPane().add(lblArrivalTime);
 		
 		JLabel lblCpuCycle = new JLabel("CPU Cycle");
 		lblCpuCycle.setBounds(195, 76, 86, 14);
-		frame.getContentPane().add(lblCpuCycle);
+		frmProject.getContentPane().add(lblCpuCycle);
 	}
 }

@@ -14,7 +14,7 @@ import java.awt.Component;
 import javax.swing.ScrollPaneConstants;
 
 public class Project3 {
-	public JFrame frame;
+	public JFrame frmProject;
 	public JTextField jobstxt;
 
 	/**
@@ -25,7 +25,7 @@ public class Project3 {
 			public void run() {
 				try {
 					Project3 window = new Project3();
-					window.frame.setVisible(true);
+					window.frmProject.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,10 +47,11 @@ public class Project3 {
 		FIFO fifo = new FIFO();
 		LRU lru = new LRU();
 		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 578, 406);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmProject = new JFrame();
+		frmProject.setTitle("Project 3");
+		frmProject.setBounds(100, 100, 578, 406);
+		frmProject.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmProject.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("Start Test");
 		
@@ -58,11 +59,11 @@ public class Project3 {
 		fifoTextArea.setLineWrap(true);
 		fifoTextArea.setWrapStyleWord(true);
 		fifoTextArea.setBounds(104, 67, 53, 41);
-		frame.getContentPane().add(fifoTextArea);
+		frmProject.getContentPane().add(fifoTextArea);
 		
 		JScrollPane pane = new JScrollPane(fifoTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		pane.setBounds(27, 126, 182, 199);
-		frame.getContentPane().add(pane);
+		frmProject.getContentPane().add(pane);
 		
 		JSlider slider = new JSlider();
 		slider.setPaintLabels(true);
@@ -72,28 +73,28 @@ public class Project3 {
 		slider.setPaintTicks(true);
 		slider.setMajorTickSpacing(1);
 		slider.setBounds(41, 40, 200, 45);
-		frame.getContentPane().add(slider);
+		frmProject.getContentPane().add(slider);
 		
 		jobstxt = new JTextField();
 		jobstxt.setBounds(369, 40, 152, 23);
-		frame.getContentPane().add(jobstxt);
+		frmProject.getContentPane().add(jobstxt);
 		jobstxt.setColumns(10);
 		
 		JLabel lblframes = new JLabel("How Many Frames Do You Want?");
 		lblframes.setBounds(41, 11, 200, 14);
-		frame.getContentPane().add(lblframes);
+		frmProject.getContentPane().add(lblframes);
 		
 		JLabel lblProcesess = new JLabel("Please List The Processes");
 		lblProcesess.setBounds(369, 15, 152, 14);
-		frame.getContentPane().add(lblProcesess);
+		frmProject.getContentPane().add(lblProcesess);
 		
 		JLabel lblFifo = new JLabel("FIFO");
 		lblFifo.setBounds(83, 101, 80, 14);
-		frame.getContentPane().add(lblFifo);
+		frmProject.getContentPane().add(lblFifo);
 		
 		JScrollPane scrollPane = new JScrollPane((Component) null, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(334, 126, 182, 199);
-		frame.getContentPane().add(scrollPane);
+		frmProject.getContentPane().add(scrollPane);
 		
 		JTextArea lruTextArea = new JTextArea();
 		lruTextArea.setWrapStyleWord(true);
@@ -102,7 +103,7 @@ public class Project3 {
 		
 		JLabel lblLru = new JLabel("LRU");
 		lblLru.setBounds(386, 101, 80, 14);
-		frame.getContentPane().add(lblLru);
+		frmProject.getContentPane().add(lblLru);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,13 +114,14 @@ public class Project3 {
 				{
 					jobs.add(String.valueOf(tempJobs.charAt(i)));
 				}
+				@SuppressWarnings("unchecked")
 				ArrayList<String> jobs2 = (ArrayList<String>) jobs.clone();
 				fifoTextArea.setText(fifo.startFIFO(frames, jobs));
 				lruTextArea.setText(lru.startLRU(frames, jobs2));
 			}
 		});
 		btnNewButton.setBounds(223, 336, 117, 23);
-		frame.getContentPane().add(btnNewButton);
+		frmProject.getContentPane().add(btnNewButton);
 		
 		
 		
