@@ -1,20 +1,20 @@
 import java.util.ArrayList;
-public class FCFS {
-	
-		
-		
-		public void FCFSrunner(ArrayList<Solve> solutions){
-			
-			int waitTime = 0;
-			
-			
-			for (Solve temp : solutions) {
-				temp.setTurnAround(temp.getCPUCycle() - temp.getArrival());
-				waitTime = waitTime + temp.getCPUCycle();
-				temp.setWaitTime(waitTime);
-				
+public class FCFS 
+{
+	/**
+	 * Used to create a first come first serve solution
+	 * @param solutions the arraylist of jobs
+	 */
+	public void fcfs(ArrayList<Solve> solutions)
+		{
+			//Variable used for keeping track of times
+			int time = 0;
+			//Iterate through each solution in the collection
+			for (Solve job : solutions) 
+			{
+				job.setTurnAround(job.getCPUCycle() - job.getArrival());
+				time = time + job.getCPUCycle();
+				job.setWaitTime(time);
 			}
-			
 		}
-
 }

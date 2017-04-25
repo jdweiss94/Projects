@@ -123,32 +123,35 @@ public class Project4 {
 					cpuCycleInts[i] = Integer.parseInt(cpuCycle[i]);
 					tasks.add(new Solve(jobs[i], arrivalInts[i], cpuCycleInts[i], 0, 0, 0));
 				}
-				System.out.println("Hey");
 				if (rdbtnFcfs.isSelected()) 
 				{
+					output = output + "First Come First Serve";
 					FCFS fcfs = new FCFS();
-					fcfs.FCFSrunner(tasks);
+					fcfs.fcfs(tasks);
 				}
 
 				else if (rdbtnSjn.isSelected()) 
 				{
+					output = output + "Shortest Job Remaining";
 					SJN sjn = new SJN();
 					sjn.SJNrunner(tasks);
 				}
 
 				else if (rdbtnSrt.isSelected()) 
 				{
+					output = output + "Shortest Remaining Time";
 					SRT srt = new SRT();
 					srt.SRTrunner(tasks);
 				}
 
 				else if (rdbtnRoundRobin.isSelected()) 
 				{
+					output = output + "Round Robin";
 					RoundRobin roro = new RoundRobin();
 					roro.Robinrunner(tasks);
 				}
 				output = output + "\n Job \t Arrival \t CPU Cycle \t Wait Time \t Turn Around";
-				output = output + "\n----------------------------------------------------------------------------------" ;
+				output = output + "\n--------------------------------------------------------------------------------------------------" ;
 				for (Solve temp : tasks) 
 				{
 					output = output + "\n" + temp;
