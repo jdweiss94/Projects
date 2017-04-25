@@ -14,7 +14,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
 
-public class Project4 {
+public class Project4 
+{
 
 	private JFrame frmProject;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -48,7 +49,8 @@ public class Project4 {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() 
+	{
 		frmProject = new JFrame();
 		frmProject.setTitle("Project 4");
 		frmProject.setBounds(100, 100, 453, 408);
