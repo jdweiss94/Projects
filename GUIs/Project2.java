@@ -207,7 +207,7 @@ public class Project2 {
 		lblNumberOfJobs.setBounds(370, 100, 134, 14);
 		frmProject.getContentPane().add(lblNumberOfJobs);
 		
-		JLabel label = new JLabel("List Job Sizes Seperated by Space");
+		JLabel label = new JLabel("List Partition Sizes Seperated by Space");
 		label.setBounds(28, 125, 257, 14);
 		frmProject.getContentPane().add(label);
 		

@@ -1,17 +1,17 @@
-public class Solve implements Comparable<Solve> {
+public class Solve implements Comparable<Solve> 
+{
+	String job;
+	int arrival;
+	int cpuCycle;
+	int waitTime;
+	int turnAround;
+	int completionTime;
 
-	private String job;
-	private int arrival;
-	private int cpuCycle;
-	private int waitTime;
-	private int turnAround;
-	private int completionTime;
-
-	public Solve(String job, int arrival, int cPUCycle, int waitTime, int turnAround, int completionTime) {
+	public Solve(String job, int arrival, int cpuCycle, int waitTime, int turnAround, int completionTime) {
 		super();
 		this.job = job;
 		this.arrival = arrival;
-		cpuCycle = cPUCycle;
+		this.cpuCycle = cpuCycle;
 		this.waitTime = waitTime;
 		this.turnAround = turnAround;
 		this.completionTime = completionTime;
@@ -80,14 +80,16 @@ public class Solve implements Comparable<Solve> {
 	
 
 	@Override
-	public int compareTo(Solve otherTask) 
+	public int compareTo(Solve second) 
 	{
-		if (otherTask == null) {
-			throw new NullPointerException("Attempted to compare " + this
-					+ " to null");
-		} else if (this.cpuCycle < otherTask.cpuCycle) {
+		if (second == null) 
+		{
+			throw new NullPointerException("Failure");
+		} else if (this.cpuCycle < second.cpuCycle) 
+		{
 			return -1;
-		} else if (this.cpuCycle > otherTask.cpuCycle) {
+		} else if (this.cpuCycle > second.cpuCycle) 
+		{
 			return 1;
 		}
 		return 0;
